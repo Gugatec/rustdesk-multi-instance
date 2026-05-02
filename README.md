@@ -1,93 +1,91 @@
-# RustDesk Instance Manager GUI (rustdesk-multi-instance)
+RustDesk Multi-Instance Manager (Improved)
 
-This project provides a graphical user interface (GUI) for managing multiple RustDesk instances on Windows. The tool allows you to select different configurations (instances) for RustDesk, enabling you to switch between private and public relay servers or manage separate environments.
+A Windows PowerShell GUI tool to manage multiple RustDesk profiles (instances) with reliable profile switching and configuration persistence.
 
-![image](https://github.com/user-attachments/assets/67b48997-282a-4aea-a31f-2c4ae15dd80b)
+This fork fixes major issues in the original project and introduces a safer, predictable way to handle multiple RustDesk configurations.
 
+✨ What’s new in this fork
+✅ Reliable profile switching
+Uses a profile copy/switch method instead of unstable environment variable tricks
+Ensures RustDesk always loads the correct configuration (sessions, favorites, IDs)
+✅ No more broken configs
+Removed junctions and %LOCALAPPDATA% overrides that caused data loss or empty sessions
+✅ Config persistence
+Remembers:
+RustDesk.exe path
+Instance directory
 
----
+Stored in:
 
-## Features
+%APPDATA%\RustDeskMultiInstanceTool\config.json
+✅ Active instance tracking
+Tracks which instance is currently active
+Automatically saves the current profile before switching
+✅ Safe default profile backup
 
-- **Browse and Select RustDesk Executable**  
-  Easily choose the `RustDesk.exe` executable for launching instances.
+First run creates a backup of your original:
 
-- **Instance Management**  
-  - Browse and select a directory containing RustDesk instances.  
-  - Create new RustDesk instances with independent configurations.  
-  - Launch a selected instance directly from the GUI.
+%APPDATA%\RustDesk
+Can be restored at any time
+✅ GUI improvements
+Config window with browse buttons
+Instance list with active indicator
+Cleaner and more predictable behavior
+⚙️ How it works
 
-- **Configuration Isolation**  
-  Each instance has its own `APPDATA` directory to maintain isolated settings.
+This tool does profile switching (not parallel multi-instance):
 
----
+Select an instance
+The tool:
+Stops RustDesk
+Saves the current profile to its instance folder
 
-## Prerequisites
+Copies the selected instance into:
 
-- **Windows OS**  
-  The script is designed to run on Windows operating systems.
+%APPDATA%\RustDesk
+Launches RustDesk normally
 
-- **RustDesk**  
-  Ensure that RustDesk is installed on your system. You can download it from [RustDesk Official Website](https://rustdesk.com/).
+✔ Result: RustDesk behaves exactly like a normal install, but with different profiles.
 
-- **PowerShell**  
-  Requires **PowerShell 4.x** or later.  
+📁 Instance structure
+instances/
+ ├── instance1/
+ │    └── RustDesk/
+ ├── instance2/
+ │    └── RustDesk/
+🚀 Usage
+Open Config
+Select RustDesk.exe
+Choose an instance directory
+Create instances
+Click Create Instance
+Each instance gets its own RustDesk config
+Switch & start
+Select an instance
+Click Switch & Start
+⚠️ Important Notes
+Only one instance runs at a time
+This tool does not support true simultaneous sessions
+RustDesk must be closed before switching
+Do not enable RustDesk service mode
+🔧 Why this fork?
 
----
+The original implementation relied on:
 
-## Installation
+%APPDATA% overrides ❌
+%LOCALAPPDATA% hacks ❌
+Junction links ❌
 
-1. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/suuhm/rustdesk-multi-instance.git
-   cd rustdesk-multi-instance
-   ```
+These caused:
 
-2. **Run the Script**  
-   Open PowerShell as Administrator and execute the script:  
-   ```powershell
-   .\rustdesk-multi-instance.ps1
-   ```
+Missing sessions/favorites
+Broken configs
+Inconsistent behavior
 
----
+This fork replaces all of that with a simple, robust approach that matches how RustDesk actually works on Windows.
 
-## Usage
-
-1. **Browse RustDesk Executable**  
-   - Click the "Browse RustDesk.exe" button to select the RustDesk executable file.
-
-2. **Select Instance Directory**  
-   - Use "Browse Instance Path" to choose a directory where RustDesk instances are stored.
-
-3. **Create New Instances**  
-   - Use the "Create Instance" button to set up a new instance.  
-   - Default configurations will be copied to the new instance folder.
-
-4. **Launch an Instance**  
-   - Select an instance from the list and click "Start Instance" to launch RustDesk with the selected configuration.
-
----
-
-## How It Works
-
-- The tool temporarily modifies the `APPDATA` environment variable to point to the selected RustDesk instance.  
-- This allows RustDesk to run with a unique configuration for each instance.
-
----
-
-## Notes
-
-- Ensure the directory containing instances has appropriate permissions for read/write access.  
-- Each instance's configuration is stored in a separate folder to avoid conflicts.
-
----
-
-## Contributing
-
-Contributions are welcome!  
-If you'd like to improve the script, submit a pull request or open an issue.
-
----
-
-
-Let me know if you want me to adjust anything!
+📌 Future ideas
+Portable mode support
+True multi-instance via separate binaries
+Instance cloning/duplication UI
+Export/import profiles
