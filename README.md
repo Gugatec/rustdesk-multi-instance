@@ -15,11 +15,8 @@ This fork fixes major issues in the original project and introduces a safer, pre
 ## ✨ What’s new in this fork
 
 - ✅ **Reliable profile switching**
-  - Uses a **profile copy/switch method** instead of unstable environment variable tricks
+  - Uses a **profile copy/switch method** instead of envionment variable
   - Ensures RustDesk always loads the correct configuration (sessions, favorites, IDs)
-
-- ✅ **No more broken configs**
-  - Removed junctions and `%LOCALAPPDATA%` overrides that caused data loss or empty sessions
 
 - ✅ **Config persistence**
   - Remembers:
@@ -33,6 +30,7 @@ This fork fixes major issues in the original project and introduces a safer, pre
 - ✅ **Active instance tracking**
   - Tracks which instance is currently active
   - Automatically saves the current profile before switching
+  - Close running rustdesk before launching new instance
 
 - ✅ **Safe default profile backup**
   - First run creates a backup of your original:
@@ -80,7 +78,7 @@ instances/
 ## 🚀 Usage
 
 1. Open **Config**
-   - Select `RustDesk.exe`
+   - Select `RustDesk.exe` location
    - Choose an **instance directory**
 
 2. Create instances
@@ -105,7 +103,8 @@ instances/
 ## 🔧 Why this fork?
 
 The original implementation relied on:
-- `%APPDATA%` overrides ❌
+- `%APPDATA%` variable overrides not working in current Rustdesk 1.4.6
+- It didn't remmebered the path for the executable or your instances folders
 
 
 These caused:
