@@ -2,7 +2,11 @@
 
 A Windows PowerShell 5.x GUI tool to manage multiple **RustDesk instances**, with optional **Tailscale account switching** so each RustDesk instance can be paired with the correct Tailscale account/network.
 
-<img width="600" height="600" alt="screenshot png" src="https://github.com/user-attachments/assets/6c261389-3b56-41a0-a9ff-e0efcafe7756" />
+
+
+<div align="center">
+  <img width="600" height="600" alt="screenshot png" src="https://github.com/user-attachments/assets/6c261389-3b56-41a0-a9ff-e0efcafe7756" />
+</div>
 
 
 This fork builds on the original RustDesk multi-instance script by suuhm changing the profile switching method, adding persistent configuration, an improved UI, and optional Tailscale integration.
