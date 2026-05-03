@@ -12,18 +12,23 @@ A Windows PowerShell 5.x GUI tool to manage multiple **RustDesk instances**, wit
 This fork builds on the original RustDesk multi-instance script by suuhm changing the profile switching method, adding persistent configuration, an improved UI, and optional Tailscale integration.
 
 ---
+&nbsp;
 
-Installation
-Clone the Repository
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/gugatec/rustdesk-multi-instance.git
+   cd rustdesk-multi-instance
+   ```
 
-git clone https://github.com/gugatec/rustdesk-multi-instance.git
-cd rustdesk-multi-instance
+2. **Run the Script**  
+   Open PowerShell (5.x) as Administrator and execute the script:  
+   ```powershell
+   powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File .\rustdesk-multi-instance.ps1
+   ```
 
-Run the Script
-Open PowerShell as Administrator and execute the script:
+&nbsp;
 
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File .\rustdesk-multi-instance.ps1
-
+---
 
 
 ## ✨ What’s new in this fork
