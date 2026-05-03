@@ -13,6 +13,19 @@ This fork builds on the original RustDesk multi-instance script by suuhm changin
 
 ---
 
+Installation
+Clone the Repository
+
+git clone https://github.com/gugatec/rustdesk-multi-instance.git
+cd rustdesk-multi-instance
+
+Run the Script
+Open PowerShell as Administrator and execute the script:
+
+powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File .\rustdesk-multi-instance.ps1
+
+
+
 ## ✨ What’s new in this fork
 
 ### ✅ Reliable RustDesk profile switching
@@ -251,6 +264,4 @@ This fork uses an explicit copy/switch workflow so the real RustDesk profile dir
 ---
 
 ## Credits
-
-- Refactored by Gugatec: <https://github.com/Gugatec/rustdesk-multi-instance>
 - Original script by suuhm: <https://github.com/suuhm/rustdesk-multi-instance>
